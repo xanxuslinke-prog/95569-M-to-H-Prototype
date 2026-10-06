@@ -1,0 +1,267 @@
+/* Camera screens: QR scan, NFC tap, photo check, AR photo */
+.cam {
+  position: absolute;
+  inset: 0;
+  background: #10140f;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  z-index: 40;
+}
+.cam .view {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.frame {
+  width: 220px;
+  height: 220px;
+  border-radius: 24px;
+  position: relative;
+  box-shadow: 0 0 0 999px rgba(0, 0, 0, 0.35);
+}
+.frame::before,
+.frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  border: 3px solid var(--sun);
+  clip-path: polygon(
+    0 0,
+    30% 0,
+    30% 4%,
+    4% 4%,
+    4% 30%,
+    0 30%,
+    0 70%,
+    4% 70%,
+    4% 96%,
+    30% 96%,
+    30% 100%,
+    0 100%,
+    0 0,
+    100% 0,
+    100% 30%,
+    96% 30%,
+    96% 4%,
+    70% 4%,
+    70% 0,
+    100% 0,
+    100% 100%,
+    70% 100%,
+    70% 96%,
+    96% 96%,
+    96% 70%,
+    100% 70%
+  );
+}
+.scanline {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  height: 2px;
+  background: var(--sun);
+  box-shadow: 0 0 12px var(--sun);
+  animation: scan 1.8s ease-in-out infinite;
+}
+@keyframes scan {
+  0%,
+  100% {
+    top: 10%;
+  }
+  50% {
+    top: 88%;
+  }
+}
+.camtop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 52px 16px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 3;
+}
+.camtop h2 {
+  margin: 0;
+  font-size: 17px;
+  flex: 1;
+  text-align: center;
+  padding-right: 36px;
+}
+.cambottom {
+  background: var(--bg);
+  color: var(--ink);
+  border-radius: 24px 24px 0 0;
+  padding: 18px 18px calc(22px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.fakecam {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, #3d4a3a, #161b15 70%);
+}
+.qrfake {
+  width: 120px;
+  height: 120px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 2px;
+  transform: rotate(-6deg);
+  opacity: 0.85;
+}
+.qrfake i {
+  background: #111;
+  border-radius: 1px;
+}
+.qrfake i.o {
+  background: transparent;
+}
+.nfcpulse {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(242, 182, 60, 0.18);
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.nfcpulse::before,
+.nfcpulse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--sun);
+  animation: ring 1.8s ease-out infinite;
+}
+.nfcpulse::after {
+  animation-delay: 0.9s;
+}
+@keyframes ring {
+  from {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+.nfcpulse svg {
+  width: 48px;
+  height: 48px;
+  color: var(--sun);
+}
+.arscene {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(#9fd0ea, #d8eef6 45%, #8fbf74 45%, #5e8f4c);
+  background-size: cover;
+  background-position: center;
+}
+.arscene .tree1 {
+  position: absolute;
+  left: 6%;
+  top: 24%;
+  width: 28%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #4f8a45;
+}
+.arscene .tree2 {
+  position: absolute;
+  right: 10%;
+  top: 28%;
+  width: 20%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #5e9a4f;
+}
+.arplant {
+  position: absolute;
+  touch-action: none;
+  cursor: grab;
+  filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.3));
+}
+.arplant svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.flash {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  animation: flash 0.5s ease forwards;
+  z-index: 10;
+  pointer-events: none;
+}
+@keyframes flash {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.shutter {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: var(--sun);
+  border: 5px solid #fff;
+  box-shadow: 0 0 0 2px var(--sun);
+}
+
+/* Plant picker in the AR photo screen: garden plants and grown (harvested) plants */
+.arpick {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-inline: -18px;
+  padding-inline: 18px;
+}
+.arpick::-webkit-scrollbar {
+  display: none;
+}
+.aropt {
+  flex: none;
+  width: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 6px 4px;
+  border-radius: 14px;
+  border: 1.5px solid var(--line);
+  background: #fff;
+}
+.aropt.on {
+  border-color: var(--green);
+  background: var(--green-soft);
+}
+.aropt svg {
+  width: 44px;
+  height: auto;
+}
+.aropt span {
+  font-size: 10.5px;
+  font-weight: 800;
+}
+.aropt em {
+  font-size: 9.5px;
+  font-style: normal;
+  color: var(--muted);
+}

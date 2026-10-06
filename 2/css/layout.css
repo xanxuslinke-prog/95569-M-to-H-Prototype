@@ -1,0 +1,248 @@
+/* App shell: phone frame, status bar, scrolling screen, tab bar, headers, phone-size rules */
+.wrap {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 24px;
+  padding-inline: 16px;
+}
+.device {
+  position: relative;
+  width: 390px;
+  max-width: 100%;
+  height: 844px;
+  max-height: calc(100vh - 48px);
+  background: var(--bg);
+  border-radius: 44px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 10px #111,
+    0 0 0 12px #6b6275,
+    0 30px 80px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+.status {
+  height: 44px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  font-weight: 700;
+  font-size: 14px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  pointer-events: none;
+}
+.status.light {
+  color: #fff;
+}
+.screen {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  scrollbar-width: none;
+}
+.screen::-webkit-scrollbar {
+  display: none;
+}
+.tabbar {
+  flex: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--card);
+  border-top: 1px solid var(--line);
+  padding: 8px 8px calc(14px + env(safe-area-inset-bottom, 0px));
+}
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #9aa196;
+  padding: 4px 0;
+}
+.tab svg {
+  width: 24px;
+  height: 24px;
+}
+.tab.on {
+  color: var(--green);
+}
+.hero {
+  background: var(--green);
+  color: #fff;
+  padding: 54px 20px 22px;
+  position: relative;
+  overflow: hidden;
+}
+.hero h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.hero p {
+  margin: 4px 0 0;
+  opacity: 0.85;
+  font-size: 13px;
+}
+.hero .sunball {
+  position: absolute;
+  right: 22px;
+  top: 40px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--sun);
+}
+.hero .leafbg {
+  position: absolute;
+  right: -20px;
+  top: 10px;
+  width: 150px;
+  height: 150px;
+  opacity: 0.18;
+}
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 52px 16px 12px;
+  background: var(--green);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+.bar.plain {
+  background: var(--bg);
+  color: var(--ink);
+}
+.bar h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pad {
+  padding: 16px;
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.grow {
+  flex: 1;
+  min-width: 0;
+}
+.muted {
+  color: var(--muted);
+}
+.small {
+  font-size: 12px;
+}
+.tiny {
+  font-size: 11px;
+}
+.bold {
+  font-weight: 700;
+}
+.label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 6px 2px 0;
+}
+.bar-res {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.center {
+  text-align: center;
+}
+.ghead {
+  padding: 52px 16px 0;
+}
+.vtop {
+  padding-top: 96px;
+}
+@media (max-width: 500px) {
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+  body {
+    background: linear-gradient(var(--green) 50%, var(--card) 50%);
+  }
+  .wrap {
+    height: 100%;
+    min-height: 0;
+    padding: 0;
+  }
+  .device {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .status {
+    display: none;
+  }
+  .hero {
+    padding-top: 18px;
+  }
+  .hero .sunball {
+    top: 14px;
+  }
+  .bar,
+  .ghead {
+    padding-top: 14px;
+  }
+  .camtop {
+    padding-top: 14px;
+  }
+  .vtop {
+    padding-top: 64px;
+  }
+  .tabbar {
+    padding-bottom: 10px;
+  }
+  .sheet {
+    padding-bottom: 22px;
+  }
+  .cambottom {
+    padding-bottom: 22px;
+  }
+}
+@media (max-width: 500px) {
+  .auth {
+    padding-top: 14px;
+  }
+  .welcome {
+    padding-top: 0;
+  }
+}

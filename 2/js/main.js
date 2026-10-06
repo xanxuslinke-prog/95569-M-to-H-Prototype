@@ -1,0 +1,3 @@
+/* Starts the app. */
+
+render();

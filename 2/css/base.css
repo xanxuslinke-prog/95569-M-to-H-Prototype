@@ -1,0 +1,70 @@
+/* Colour tokens, page reset and accessibility */
+/* Reset the hosting page adds automatically on claude.ai; repeated here so the folder works on its own. */
+:root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+img {
+  max-width: 100%;
+}
+[hidden] {
+  display: none !important;
+}
+:root {
+  --green: #4e7a4f;
+  --green-dk: #3a5e3c;
+  --green-soft: #e4eddf;
+  --leaf: #6fa35e;
+  --sun: #f2b63c;
+  --cream: #fbf3dc;
+  --bg: #f5f4ee;
+  --card: #ffffff;
+  --ink: #1f2a1d;
+  --muted: #6b7467;
+  --line: #e2e4d9;
+  --danger: #c0392b;
+  --stage: #2b332a;
+  --font: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: var(--stage);
+  color: var(--ink);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+* {
+  box-sizing: border-box;
+}
+button {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+button:focus-visible,
+input:focus-visible,
+label:focus-visible {
+  outline: 2px solid var(--sun);
+  outline-offset: 2px;
+}
+input {
+  font: inherit;
+  color: var(--ink);
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
